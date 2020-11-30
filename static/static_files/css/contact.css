@@ -1,0 +1,14 @@
+.btn-submit {
+    background-color: #354e5d;
+    border-color: #263945;
+}
+.btn-submit:hover {
+    background-color: #18252d;
+}
+
+.contact input:focus, .contact textarea:focus {
+    outline: none !important;
+    border-color: rgba(0,0,0,0.4) !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}

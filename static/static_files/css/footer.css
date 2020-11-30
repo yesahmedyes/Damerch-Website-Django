@@ -1,0 +1,39 @@
+.footer ul {
+    list-style-type: none;
+    margin: 0 !important;
+}
+
+.footer a {
+    color: #343a40;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #000000;
+}
+
+.social-icons li {
+    display: inline-block;
+    font-size: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.footer img {
+    width: 125px;
+    height: 71px;
+}
+
+@media only screen and (min-width: 576px) {
+    .footer img {
+        width: 135px;
+        height: 77px;
+    }
+}
+
+.social-icons .fa {
+        color: #343a40;
+    }
+    .social-icons li:hover .fa {
+        color: #000000;
+    }

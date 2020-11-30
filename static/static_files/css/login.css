@@ -1,0 +1,47 @@
+.social-login {
+    font-size: 30px;
+}
+
+.social-login a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.social-login a:hover {
+    color: #000000;
+}
+
+.login input:focus, .register input:focus {
+    outline: none !important;
+    border-color: rgba(0,0,0,0.4) !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.login a, .register a {
+    color: #354e5d;
+    text-decoration: none;
+}
+
+.login a:hover, .register a:hover {
+    color: #18252d;
+    text-decoration: none;
+}
+
+.login button, .register button {
+    background-color: #354e5d;
+    border-color: #263945;
+}
+
+.login button:hover, .register button:hover {
+    background-color: #18252d;
+}
+
+.social-login .fa {
+    color: #354e5d;
+}
+
+.social-login .fa:hover {
+    color: #18252d;
+}
+

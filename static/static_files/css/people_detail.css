@@ -1,0 +1,14 @@
+.btn-dark {
+    background-color: #354e5d;
+    border-color: #2e4452;
+}
+
+.btn-dark:hover {
+    background-color: #18252d;
+}
+
+@media only screen and (max-width: 992px) and (min-width: 576px)  {
+    .people-profile {
+        max-width: 450px;
+    }
+}

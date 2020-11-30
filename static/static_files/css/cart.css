@@ -1,0 +1,46 @@
+        .btn-circle {
+            font-weight: 400;
+            cursor: pointer;
+            text-align: center;
+            padding-left: 6px;
+            padding-right: 6px;
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+            background-color: #18252d !important;
+            border-color: #18252d;
+            color: #fff;
+        }
+
+        .btn-circle:hover {
+            color: #fff !important;
+        }
+        .btn-checkout {
+            font-size: 17px;
+            background-color: #354e5d;
+            border-color: #2e4452;
+        }
+        .btn-checkout:hover {
+            background-color: #18252d;
+        }
+        .qty .btn-default span, .trash span {
+            color: #405b6b;
+        }
+        .qty .btn-default:hover span, .trash:hover span {
+            color: #18252d;
+        }
+
+@media only screen and (min-width: 768px) {
+    .total {
+        visibility: hidden;
+        position: absolute;
+        bottom: 100px;
+    }
+}
+
+.cart .btn-default, .cart .btn-default:focus {
+    outline: none !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}

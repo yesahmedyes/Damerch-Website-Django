@@ -1,0 +1,204 @@
+.navbar-brand {
+    font-weight: 500;
+}
+
+.navbar-brand {
+    font-family: 'Rambla', sans-serif;
+    letter-spacing: 1px;
+}
+
+.nav-cart i {
+    padding-bottom: 0;
+    margin-top: 9px;
+    color: #8c918f;
+}
+
+.nav-cart.active i {
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .navbar-toggler, .nav-cart {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    .nav-cart i {
+        font-size: 25px;
+        color: #ffffff;
+        padding-top: 1px;
+    }
+    .navbar-brand {
+        margin-top: 3px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar {
+        height: 70px;
+    }
+    .navbar-brand {
+        margin-top: 2px;
+    }
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: rgba(0,0,0,0);
+    color: #fff;
+}
+
+.navbar button:focus {
+    outline: none;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+    .bg-dark {
+        background-color: #18252d !important;
+    }
+
+    .nav-cart:hover i {
+        color: #c5c8ca;
+    }
+
+    .searchicon i {
+        padding-bottom: 0;
+        color: #8c918f;
+    }
+
+    .searchicon.active i {
+        color: #ffffff;
+    }
+
+    .searchicon:hover i {
+        color: #c5c8ca;
+        text-decoration: none;
+    }
+
+    .nav-search:hover {
+        padding-left: 28px;
+        padding-right: 20px;
+    }
+
+    .nav-search:hover .searchicon {
+        display: none;
+        transition: all 0.4s linear;
+    }
+
+    .searchicon i {
+        margin-top: 20px;
+    }
+
+    .nav-search .searchinput {
+        color: rgba(0,0,0,0);
+    }
+
+    .nav-search:hover .searchinput {
+        color: #eeeeee;
+        border: 1px solid #8c918f;
+        border-radius: 30px;
+        transition: border 0.4s linear;
+    }
+
+    .searchinput {
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        line-height: 40px;
+        caret-color: transparent;
+        transition: width 0.4s linear;
+        text-indent: 6px;
+        font-size: 15px;
+    }
+
+    .nav-search:hover .searchbar > .searchinput {
+        padding: 0 10px;
+        width: 400px;
+        transition: width 0.4s linear;
+        caret-color: #c5c8ca;
+    }
+
+    .modal-content {
+        background-color: #18252d;
+        color: #fcfcfc;
+    }
+
+    .modal-header, .modal-footer {
+        border-color: #263944;
+    }
+
+    .modal-footer .btn {
+        background-color: #354e5d;
+        border-color: #192831;
+    }
+
+    .modal-footer .btn:hover {
+        background-color: #283c48;
+    }
+
+    .modal-body h6 {
+        font-weight: lighter;
+    }
+
+    .modal-body hr {
+        background-color: #20313b;
+    }
+
+    .modal-content .fa-trash {
+        color: #8ea9b9;
+    }
+
+    .modal-content .fa-trash:hover {
+        color: #69889a;
+    }
+
+    .modal-header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .modal-header .close {
+        padding-top: 18px;
+        /*#color: #f5b41a;*/
+        color: #ffffff;
+        text-shadow: none;
+        opacity: 1;
+    }
+
+    @media only screen and (max-width: 792px) {
+        .modal-header .close {
+            padding-top: 20px;
+            color: #ffffff;
+        }
+    }
+
+    .modal-footer {
+        padding: 25px 32px 25px 40px;
+    }
+
+    @media only screen and (max-width: 576px) {
+        .modal-footer {
+            padding-left: 24px;
+            padding-right: 16px;
+        }
+    }
+
+    .custom-button:focus, .close:focus, .fa-trash:focus {
+        outline: none !important;
+        border: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .modal .btn-default, .modal .btn-default:focus {
+        outline: none !important;
+        border: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }

@@ -1,0 +1,106 @@
+.carousel .img {
+        overflow: hidden;
+        min-height: 300px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        }
+
+    .change-icon {
+        width: 18px;
+    }
+
+    @media only screen and (min-width : 768px) {
+        .carousel .img {
+            min-height: 600px;
+        }
+        .change-icon {
+            width: 30px;
+        }
+    }
+
+    @media only screen and (min-width: 970px) {
+        .carousel .img {
+            min-height: 475px;
+        }
+        .change-icon {
+            width: 30px;
+        }
+    }
+
+    @media only screen and (min-width : 1200px){
+        .carousel .img {
+            min-height: 600px;
+        }
+    }
+
+.products .card-body a, .people .card-body a {
+            background-color: #354e5d;
+            border-color: #2e4452;
+        }
+        .products .card-body a:hover, .people .card-body a:hover {
+            background-color: #18252d;
+        }
+        .btn-more {
+            background-color: #18252d;
+            border-color: #11191e;
+        }
+
+        .price p {
+            padding-top: 2px;
+            text-decoration: line-through;
+            color: #666666;
+        }
+
+
+.gallery {
+    background-color: #18252d !important;
+}
+
+    .gallery img {
+        opacity: 1;
+        transition: all 0.4s ease;
+    }
+
+    .img-hover {
+        transition: all 0.4s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .img-container:hover img {
+        opacity: 0.25;
+    }
+
+    .img-container:hover .img-hover {
+        opacity: 1 !important;
+    }
+
+    .img-hover a {
+        color: rgba(255, 255, 255, 0.40);
+        padding: 9px 15px 10px 17px;
+        border-radius: 30px;
+        background-color: rgba(0,0,0,0);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .img-hover a:hover {
+        color: #18252d;
+        background-color: #ffffff;
+        border-color: #2e4452;
+    }
+
+    .img-container:before {
+        border: 1px solid rgba(255, 255, 255, 0.20);
+        content: "";
+        position: absolute;
+        top: 12px;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+    }

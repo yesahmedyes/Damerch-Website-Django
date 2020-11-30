@@ -1,0 +1,8 @@
+.people .card-body a {
+    background-color: #354e5d;
+    border-color: #2e4452;
+}
+
+.people .card-body a:hover {
+    background-color: #18252d;
+}

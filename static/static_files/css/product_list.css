@@ -1,0 +1,18 @@
+.products .card-body a {
+            background-color: #354e5d;
+            border-color: #2e4452;
+        }
+        .products .card-body a:hover {
+            background-color: #18252d;
+        }
+        .btn-more {
+            background-color: #18252d;
+            border-color: #11191e;
+        }
+
+        .price p {
+            padding-top: 2px;
+            text-decoration: line-through;
+            color: #666666;
+        }
+

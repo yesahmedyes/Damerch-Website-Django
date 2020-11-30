@@ -1,0 +1,29 @@
+.subscribe {
+    background-color: #18252d !important;
+}
+
+.subscribe-button {
+    position: absolute;
+    right: 13px;
+}
+
+.subscribe-button button, .subscribe-button button:focus {
+    padding: 4px 10px 4px 10px;
+    margin: 2px 4px 2px 4px;
+    background-color: #354e5d;
+    border-color: #2e4452;
+}
+
+.subscribe-button button:hover {
+    background-color: #18252d;
+}
+
+.subscribe h5 {
+    color: #fff;
+}
+
+.subscribe-button button:focus, .sub-input input:focus {
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}

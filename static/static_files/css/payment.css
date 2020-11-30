@@ -1,0 +1,9 @@
+.btn-checkout {
+    font-size: 17px;
+    background-color: #354e5d;
+    border-color: #2e4452;
+}
+
+.btn-checkout:hover {
+    background-color: #18252d;
+}

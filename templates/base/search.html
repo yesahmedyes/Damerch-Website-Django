@@ -1,0 +1,44 @@
+<div class="col-12 col-md-8 mx-auto pt-0 pt-md-2 search">
+    <form method="GET" action="{% url 'search:list' %}">
+        <div class="row">
+           <div class="col-12 mx-auto">
+              <div class="form-group">
+                <input class="form-control" autocomplete="off" placeholder="{% if q %}{{ q }}{% else %}Search{% endif %}" id="search" name="q">
+            </div>
+            <button class="btn btn-default form-search-submit" type="submit"><span class="material-icons" style="color: #18252d">search</span></button>
+           </div>
+        </div>
+
+{#        <div class="row d-flex justify-content-center">#}
+{#            <div class="col-6 col-sm-4 col-md-4 col-lg-3">#}
+{#                <label for="size" class="ml-1">Size</label>#}
+{#                <select class="form-control" name="s" id="size">#}
+{#                    <option value="All" {% if s == 'All' %}selected="selected"{% endif %}>All</option>#}
+{#                    <option value="XS" {% if s == 'XS' %}selected="selected"{% endif %}>Extra Small</option>#}
+{#                    <option value="S" {% if s == 'S' %}selected="selected"{% endif %}>Small</option>#}
+{#                    <option value="M" {% if s == 'M' %}selected="selected"{% endif %}>Medium</option>#}
+{#                    <option value="L" {% if s == 'L' %}selected="selected"{% endif %}>Large</option>#}
+{#                    <option value="XL" {% if s == 'XL' %}selected="selected"{% endif %}>Extra Large</option>#}
+{#                </select>#}
+{#            </div>#}
+{#            <div class="col-6 col-sm-4 col-md-4 col-lg-3">#}
+{#                <label for="color" class="ml-1">Color</label>#}
+{#                <select class="form-control" name="c" id="color">#}
+{#                    <option value="All" {% if c == 'All' %}selected="selected"{% endif %}>All</option>#}
+{#                    <option value="RD" {% if c == 'RD' %}selected="selected"{% endif %}>Red</option>#}
+{#                    <option value="BE" {% if c == 'BE' %}selected="selected"{% endif %}>Blue</option>#}
+{#                    <option value="BK" {% if c == 'BK' %}selected="selected"{% endif %}>Black</option>#}
+{#                    <option value="GY" {% if c == 'GY' %}selected="selected"{% endif %}>Grey</option>#}
+{#                    <option value="WE" {% if c == 'WE' %}selected="selected"{% endif %}>White</option>#}
+{#                </select>#}
+{#            </div>#}
+{##}
+{#            <div class="col-12 col-lg-6 pt-3 pt-lg-0">#}
+{#                <div class="slidercontainer">#}
+{#                    <label for="myRange" class="ml-1">Price<span id="range" class="pl-5"> </span></label>#}
+{#                    <input type="range" min="0" max="19" value="0" class="slider col-12 mt-2 mt-lg-3" id="myRange">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </form>
+</div>

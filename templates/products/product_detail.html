@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 mb-4 pt-4 pb-5 pt-md-5">
+        <div class="row mt-5 pt-2 pt-md-0">
+            <div class="col-12 col-lg-6 pr-lg-5">
+                {% for item in object.productimage_set.all %}
+                    {% if item.featured %}
+                        <img class="img-fluid img-thumbnail" src="{{ item.image.url }}" alt="{{ object.title }} logo">
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="col-12 col-lg-6 px-4 px-sm-3 pl-lg-5">
+                <form method="POST" class="form product-update" action="{% url 'carts:cart_update'%}">
+                    {% csrf_token %}
+                    <input type="hidden" class="product-slug" name="product" value="{{ object.slug }}">
+                    <h5 class="mb-1 mt-4 mt-lg-2 pt-2 pt-lg-0 product-owner"><a href="{{ object.owner.get_url }}">{{ object.owner.name }}</a></h5>
+                    <h1 class="mb-3">{{ object.title }}</h1>
+                    <div class="accordion mb-2 pb-4" id="myAccordion">
+                        <div class="card">
+                            <div class="card-header collapsed p-0" id="description" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h4 class="mb-0 float-left">
+                                    <button class="btn btn-link pl-1" type="button">DESCRIPTION</button>
+                                </h4>
+                                <span class="a-fa float-right mr-2"></span>
+                            </div>
+                            <div id="collapseOne" class="collapse" aria-labelledby="description" data-parent="#myAccordion">
+                                <div class="card-body">
+                                    <p>{{ object.description | linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header collapsed p-0" id="description" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <h4 class="mb-0 float-left">
+                                    <button class="btn btn-link pl-1" type="button">SIZE & FIT</button>
+                                </h4>
+                                <span class="a-fa float-right mr-2"></span>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="description" data-parent="#myAccordion">
+                                <div class="card-body">
+                                    <p>{{ object.detail | linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header collapsed p-0" id="description" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                <h4 class="mb-0 float-left">
+                                    <button class="btn btn-link pl-1" type="button">DELIVERY & RETURNS</button>
+                                </h4>
+                                <span class="a-fa float-right mr-2"></span>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="description" data-parent="#myAccordion">
+                                <div class="card-body">
+                                    <p>{{ object.delivery | linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if object.discount %}
+                        <div class="row price ml-0 ml-sm-1 d-flex justify-content-center justify-content-sm-start">
+                            <h1 class="price-price">PKR {{ object.price }}</h1>
+                            <h4 class="mt-3 ml-2 mr-3">{{ object.discount }}</h4>
+                        </div>
+                    {% else %}
+                        <h1 class="ml-0 ml-lg-1 price-price text-center text-sm-left">PKR {{ object.price }}</h1>
+                    {% endif %}
+
+                    {% if object.variation_set.all.exists %}
+                        <div class="row mt-3 pt-1 pt-sm-3">
+                            <h5 class="col-12 col-sm-auto ml-0 ml-sm-1 pt-0 pt-sm-1 text-center">Select size</h5>
+                            <div class="col-12 col-sm-auto mt-2 mt-sm-0 d-flex justify-content-center">
+                                <div class="row pr-2">
+                                    {% for item in object.variation_set.all %}
+                                        {% if item.category == 'size' %}
+                                            <div class="form-group label-parent">
+                                                <input id="{{ item.tag }}" onclick="check()" type="radio" name="size" value="{{ item.tag }}">
+                                                <label for="{{ item.tag }}" class="btn btn-light btn-circle p-auto">{{ item.tag }}</label>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+
+                    <div class="row mt-0 mt-xl-3 d-flex justify-content-center justify-content-xl-end last-row">
+                        <div class="col-12 col-xl-4 d-flex justify-content-center justify-content-xl-end row-quantity px-2">
+                            <span class="input-number-decrement">–</span><input class="input-number" name="qty" type="text" value="1" min="1" required><span class="input-number-increment">+</span>
+                        </div>
+                        <div class="px-0 col-12 col-xl-4 mt-3 mt-xl-0 d-flex justify-content-center justify-content-xl-start row-button"><button class="btn btn-dark add-cart ml-xl-4" type="submit">ADD TO CART</button></div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    {% if object.variation_set.all.exists %}
+        <script>
+            $( document ).ready(function() {
+               let element = $(".add-cart")[0];
+               element.setCustomValidity("Please select a size first.");
+            });
+        </script>
+        <script>
+            function check() {
+                let element = $(".add-cart")[0];
+                element.setCustomValidity("");
+            }
+        </script>
+    {% endif %}
+
+    <script>
+        $(document).ready(function() {
+            $(".product-update").submit(function(event) {
+                event.preventDefault();
+
+                let $product = $(".product-slug").val();
+                let $size = $("input[name='size']:checked").val();
+                let $qty = $("input[name='qty']").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'carts:cart_update' %}",
+                    data: {
+                        "product": $product,
+                        "size": $size,
+                        "qty": $qty,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    success: function (data) {
+                        $('.modal-body-first').append(data.new_template);
+                        $(".modal-"+$product+"-"+$size+"-total").text("Sub total: PKR " + data.line_total);
+                        $(".modal-"+$product+"-"+$size+"-description").text("PKR " + data.price + ", " + data.var + ", Qty: " + data.product_qty);
+                        $(".modal-total").text("Total: PKR " + data.cart_total);
+                        $('#modalCart').modal('toggle');
+                        $('.modal-checkout-url').attr("href", "{% url 'checkout:checkout' %}");
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+    (function() {
+
+      window.inputNumber = function(el) {
+
+        var min = el.attr('min') || false;
+        var max = el.attr('max') || false;
+
+        var els = {};
+
+        els.dec = el.prev();
+        els.inc = el.next();
+
+        el.each(function() {
+          init($(this));
+        });
+
+        function init(el) {
+
+          els.dec.on('click', decrement);
+          els.inc.on('click', increment);
+
+          function decrement() {
+            var value = el[0].value;
+            value--;
+            if(!min || value >= min) {
+              el[0].value = value;
+            }
+          }
+
+          function increment() {
+            var value = el[0].value;
+            value++;
+            if(!max || value <= max) {
+              el[0].value = value++;
+            }
+          }
+        }
+      }
+    })();
+
+    inputNumber($('.input-number'));
+    </script>
+{% endblock %}

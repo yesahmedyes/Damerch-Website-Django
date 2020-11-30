@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Error 404{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-5 pb-4 my-5 error">
+        <div class="image col-12 d-flex justify-content-center pt-4 pb-1">
+            <img class="img img-fluid mx-auto pt-4" src="{% static 'img/error.png' %}">
+        </div>
+        <h4 class="text-center pt-3">Bummer! Looks like we've hit a 404.</h4>
+        <p class="text-center pb-2">Contact us at damerch.o@gmail.com to find out why you got this error.</p>
+        <div class="d-flex justify-content-center pt-4 pb-2">
+            <a href="{% url 'home:home' %}" class="btn btn-dark">Go Back</a>
+        </div>
+    </div>
+
+    <style>
+        .error img {
+            max-width: 105px;
+        }
+        .error .btn-dark {
+            background-color: #354e5d;
+            border-color: #263945;
+        }
+        .error .btn-dark:hover {
+            background-color: #18252d;
+        }
+    </style>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

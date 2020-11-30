@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body style="width: 600px; font-family: 'Calibri Light', sans-serif;">
+    <div class="container" style="background-color: #fcfcfc; padding: 20px 30px 30px 30px;">
+        <h2 style="margin-bottom: 10px;">Dear, {{ name | title }}</h2>
+        <h4 style="margin-bottom: 10px;">Your order was placed successfully.</h4>
+        <h4 style="margin-top: 10px;">Order ID: #{{ order_number }}</h4>
+        <p>Check your order status: <a href="{{ link }}">{{ link }}</a></p>
+        <table width="100%;" style="text-align: center; padding-top: 15px;">
+            <tr>
+                <th style="padding-bottom: 10px;">Product</th>
+                <th style="padding-bottom: 10px;">Quantity</th>
+                <th style="padding-bottom: 10px;">Total</th>
+            </tr>
+            {% for item in cart.cartitem_set.all %}
+            <tr>
+                <td style="padding-bottom: 8px;">{{ item.product | title }}, {{ item.variation.tag }}</td>
+                <td style="padding-bottom: 8px;">{{ item.quantity }}</td>
+                <td style="padding-bottom: 8px;">PKR {{ item.line_total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h4 style="text-align: center; margin-top: 15px; margin-bottom: 25px;">Cart total: PKR {{ cart.total }}</h4>
+        <h4 style="margin-bottom: 10px;">Regards,</h4>
+        <h4 style="margin-top: 10px;">Team Damerch</h4>
+    </div>
+</body>
+</html>

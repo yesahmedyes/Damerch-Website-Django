@@ -1,0 +1,8 @@
+Welcome to Damerch, {{ name }}
+
+Please confirm your email to complete your SignUp. If you're ever locked out of your account, this will help us get you back in.
+
+Go to this link to confirm your email address: {{ link }}
+
+Regards,
+Team Damerch

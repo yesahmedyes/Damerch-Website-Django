@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-12 d-flex justify-content-center">
+        <div class="alert alert-info alert-dismissible fade" role="alert">
+            <strong>Sorry,</strong> Payments via card are currently unavailable.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .alert {
+            z-index: 99999999999;
+            position: absolute;
+            top: 50px;
+        }
+        @media only screen and (max-width: 457px) {
+            .alert {
+                left: 0;
+            }
+        }
+    </style>
+
+    <div class="container my-5 pt-5 pb-4 payment">
+        <form method="POST" action="{% url 'checkout:order' %}">
+            {% csrf_token %}
+            <h4 class="text-center pt-5 pb-2">Select payment method</h4>
+            <div class="row mx-auto pb-4 pt-3">
+                <div class="col-12 d-flex mt-3">
+                    <div class="mx-auto pm-parent">
+                        <label class="container pm pm-1">
+                            <span class="text">Cash on Delivery</span>
+                            <input type="radio" class="payment-method" checked value="cod" name="payment-method">
+                            <span class="checkmark checkmark-cod"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12  d-flex mt-3">
+                    <div class="mx-auto pm-parent">
+                        <label class="container pm pm-2" onclick="alertLoad()">
+                            <span class="text">Credit/Debit card</span>
+                            <input type="radio" class="payment-method" value="card" name="payment-method" disabled>
+                            <span class="checkmark checkmark-card"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pb-1">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="d-flex justify-content-center pt-2">
+                        <button type="submit"  class="btn btn-dark btn-checkout">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <style>
+
+    .pm-1 .text {
+        padding-right: 14px;
+    }
+
+    .pm-2 .text {
+        padding-right: 10px;
+    }
+
+    .pm-parent {
+        padding-right: 24px;
+    }
+
+    .pm input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    .pm:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    .pm input:checked ~ .checkmark {
+        background-color: #354e5d;
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .pm input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    .pm .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+
+    </style>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        function alertOut() {
+            setTimeout(function() {
+                $(".alert").removeClass("show");
+            }, 3000);
+        }
+
+        function alertLoad() {
+            $(".alert").addClass("show");
+            alertOut();
+        }
+    </script>
+{% endblock %}

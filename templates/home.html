@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/subscribe.css' %}">
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <div class="col-12 d-flex justify-content-center">
+        <div class="alert-message alert alert-info alert-dismissible fade" role="alert">
+            <span class="alert-message-text"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .alert-message {
+            z-index: 99999999999;
+            position: fixed;
+            top: 50px;
+        }
+        @media only screen and (max-width: 390px) {
+            .alert-message {
+                left: 0;
+            }
+        }
+    </style>
+
+    <div class="section home mt-5 pt-0 pt-md-3">
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for image in  home_images %}
+                    <li data-target="#carousel" data-slide-to="{{  forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for image in home_images %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                        <a href="#"><div class="img overlay" style="background-image: url('{{ image.image.url }}')"></div></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <img src="{% static 'img/left.svg' %}" class="change-icon" alt="left">
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <img src="{% static 'img/right.svg' %}" class="change-icon" alt="right">
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="section products pt-0 pt-md-2">
+        <div class="container py-4 my-5">
+            {% for object in products %}
+                {% cycle '<div class="row">' '' '' %}
+                    <div class="col-lg-4 col-md-12 d-flex justify-content-center align-self-start mb-5">
+                        <div class="card" style="width: 20rem;">
+                            {% for item in object.productimage_set.all %}
+                                {% if item.featured %}
+                                    <a href="{{ object.get_url }}"><img class="card-img-top p-3 " src="{{ item.image.url }}" alt="{{ object.title }} logo"></a>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="card-body pt-0 pt-md-1 pb-4">
+                                <h5 class="card-title text-center mb-1">{{ object.title }}</h5>
+                                <p class="card-text text-center mb-3">by {{ object.owner.name }}</p>
+                                        {% if object.discount %}
+                                            <div class="row price d-flex justify-content-center">
+                                                <h5 class="card-text">PKR {{ object.price }}</h5>
+                                                <p class="card-text pl-1" >{{ object.discount }}</p>
+                                            </div>
+                                        {% else %}
+                                            <h5 class="card-text col text-center">PKR {{ object.price }}</h5>
+                                        {% endif %}
+                                        <div class="col d-flex justify-content-center">
+                                            <a href="{{ object.get_url }}" class="col-9 btn btn-dark mt-2 mb-2" >View Product</a>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                {% cycle '' '' '</div>' %}
+            {% endfor %}
+            {% if not products.count|divisibleby:3 %}
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col justify-content-center d-flex">
+                    <a class="btn btn-dark btn-more" href="{% url 'products:list' %}">More Results</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section subscribe py-4">
+        <div class="container my-5 px-0 px-sm-3">
+            <div class="col-12 text-center pb-1 mb-2">
+                <h5>Subscribe to our mailing list</h5>
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 mx-auto pb-2">
+                <form action="{% url 'subscribe:subscribe' %}" class="subscribe-form" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 sub-input">
+                            {{ form }}
+                        </div>
+                        <div class="subscribe-button">
+                            <button type="submit" class="btn btn-dark">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="section people pt-0 pt-md-2">
+        <div class="container py-4 mt-5">
+            {% for object in people %}
+                {% cycle '<div class="row">' '' '' %}
+                    <div class="col-lg-4 col-md-12 d-flex justify-content-center align-self-start mb-5">
+                        <div class="card" style="width: 20rem;">
+                            {% if object.image %}
+                                <a href="{{ object.get_url }}"><img class="card-img-top" src="{{ object.image.url }}" alt="{{ object.name }} logo"></a>
+                             {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ object.name }}</h5>
+                                <a href="{{ object.get_url }}" class="btn btn-dark">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                {% cycle '' '' '</div>' %}
+            {% endfor %}
+            {% if not people.count|divisibleby:3 %}
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col justify-content-center d-flex mb-5">
+                    <a class="btn btn-dark btn-more" href="{% url 'people:list' %}">More Results</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section gallery">
+        <div class="container-fluid px-0 text-center">
+            <div class="col-12 mx-0 px-0">
+                {% for item in gallery %}
+                    {% cycle '<div class="row mx-0">' '' '' '' %}
+                    <div class="img-container col-12 col-sm-6 col-md-6 col-lg-3 px-0">
+                        <img class="img-fluid w-100 d-block" src="{{ item.image.url }}" alt="{{ item.title }}">
+                        <div class="img-hover">
+                            <a class="btn btn-default" href="{{ item.social }}"><span class="fa fa-chevron-right"></span></a>
+                        </div>
+                    </div>
+                    {% cycle '' '' '' '</div>' %}
+                {% endfor %}
+                {% if not gallery.count|divisibleby:4 %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            $("body").keydown(function (e) {
+                let dist = $(document).scrollTop();
+                if (dist<700) {
+                    if (e.keyCode == 37) {
+                        $(".carousel-control-prev").click();
+                    }
+                    if (e.keyCode == 39) {
+                        $(".carousel-control-next").click();
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function alertOut() {
+            setTimeout(function() {
+                $(".alert-message").removeClass("show");
+            }, 3000);
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $(".subscribe-form").submit(function(event) {
+                event.preventDefault();
+
+                let $email = $(".sub-email").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'subscribe:subscribe' %}",
+                    data: {
+                        "email": $email,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    success: function (data) {
+                        let $a = $(".alert-message-text").text(data.message);
+                        $(".alert-message").addClass("show");
+                        alertOut();
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

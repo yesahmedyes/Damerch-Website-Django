@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Success{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container my-5 pt-5 pb-4 order">
+        <div class="image col-12 d-flex justify-content-center pt-3 pb-1">
+            <img class="img img-fluid mx-auto pt-4" src="{% static 'img/success.png' %}">
+        </div>
+        {% if message %}
+            <h4 class="text-center pt-4 pb-1">Your order was placed successfully.</h4>
+            <h6 class="text-center pb-4">{{ message }}</h6>
+        {% else %}
+            <h4 class="text-center pt-3 pb-4">Your order was placed successfully.</h4>
+        {% endif %}
+        <p class="pl-2 pt-0 pt-md-3">Order Id: {{ id }}</p>
+        <p class="pl-2">Order Status: {{ status | title }}</p>
+    </div>
+
+    <style>
+        .order img {
+            max-width: 75px;
+        }
+    </style>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

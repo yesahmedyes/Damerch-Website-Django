@@ -1,0 +1,41 @@
+{% url 'home:home' as home_url %}
+{% url 'footer:contact' as contact_url %}
+{% url 'products:list' as products_url %}
+{% url 'myauth:login' as login_url %}
+{% url 'myauth:register' as register_url %}
+{% url 'carts:cart' as cart_url %}
+{% url 'people:list' as people_url %}
+{% url 'myauth:logout' as logout_url %}
+{% url 'checkout:checkout' as checkout_url %}
+
+<nav class="navbar shadow-sm fixed-top navbar-expand-lg navbar-dark bg-dark justify-content-between px-3 px-sm-5"></nav>
+
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="cartModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="cartModalTitle">Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-first">
+                    {% for item in cart.cartitem_set.all %}
+                        {% include 'base/modal.html' with item=item %}
+                    {% endfor %}
+                </div>
+                <div class="col-12">
+                    <h5 class="float-right pt-2 modal-total">Total: PKR {{ cart.total }}</h5>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="{{ cart_url }}" class="col-6 btn btn-dark">Go to Cart</a>
+                <a {% if cart.cartitem_set.count == 0 %} href="{{ cart_url }}" {% else %} href="{{ checkout_url }}" {% endif %} class="col-6 btn btn-dark modal-checkout-url">Checkout</a>
+            </div>
+
+        </div>
+    </div>
+</div>

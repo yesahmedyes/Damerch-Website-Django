@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Contact{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5 py-5 contact">
+            <h6 class="text-center pt-5 pb-3">We have no job openings available yet</h6>
+            <h6 class="text-center">but if you think you can somehow bring value to this team, make sure you contact us at</h6>
+            <h6 class="text-center pb-5">damerch.o@gmail.com</h6>
+            <div class="pb-5"></div>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

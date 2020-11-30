@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}FAQs{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/subscribe.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5 pt-5 pb-4 faq">
+        <div class="col-12 pt-4">
+            <h4 class="pl-3 pt-0 pt-md-3">Frequently Asked Questions</h4>
+            <hr class="col-12">
+            <div class="col-12 pl-4 pl-md-5">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h6 class="pt-4">Payment and Cancellation</h6>
+                        <a class="pt-1" data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1">What methods of payments do you accept?</a>
+                        <div class="collapse" id="collapse-1">
+                            <p>We accept major credit and debit cards, including Visa and MasterCard. We also offer cash on delivery service.</p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-2" role="button" aria-expanded="false" aria-controls="collapse-2">Is my payment secure?</a>
+                        <div class="collapse" id="collapse-2">
+                            <p>Yes, it is 100% secure.</p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-3" role="button" aria-expanded="false" aria-controls="collapse-3">Can I cancel my order?</a>
+                        <div class="collapse" id="collapse-3">
+                            <p>Yes, you can do so if your order is not processed yet. For more details on this, check our <a class="outside-link" href="{% url 'footer:refund' %}">refund policy.</a></p>
+                        </div>
+                        <h6 class="pt-4">Order Items</h6>
+                        <a class="pt-1" data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4">Can I change my order items?</a>
+                        <div class="collapse" id="collapse-4">
+                            <p>Yes, you can do so for free if your order is not processed yet or for extra charges if it has already been processed. For more details on this, check our <a class="outside-link" href="{% url 'footer:refund' %}">refund policy.</a></p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-5" role="button" aria-expanded="false" aria-controls="collapse-5">I just realized that I ordered the wrong size - can this be fixed?</a>
+                        <div class="collapse" id="collapse-5">
+                            <p>Yes, you can do so for free if your order is not processed yet or for extra charges if it has already been processed. For more details on this, check our <a class="outside-link" href="{% url 'footer:refund' %}">refund policy.</a></p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-6" role="button" aria-expanded="false" aria-controls="collapse-6">Do you offer refunds or exchange?</a>
+                        <div class="collapse" id="collapse-6">
+                            <p>We guarantee the quality of all products. We will provide refunds within a few days of the end of the campaign if a product is damaged or significantly different from what is displayed the pictures. For more details on this, check our <a class="outside-link" href="{% url 'footer:refund' %}">refund policy.</a></p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-7" role="button" aria-expanded="false" aria-controls="collapse-7">What if my item is damaged?</a>
+                        <div class="collapse" id="collapse-7">
+                            <p>We guarantee the quality of all products. We will provide refunds within a few days of the end of the campaign if a product is damaged or significantly different from what is displayed the pictures. For more details on this, check our <a class="outside-link" href="{% url 'footer:refund' %}">refund policy.</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6 class="pt-4">Shipping and Delivery</h6>
+                        <a class="pt-1" data-toggle="collapse" href="#collapse-8" role="button" aria-expanded="false" aria-controls="collapse-8">When will I receive my order?</a>
+                        <div class="collapse" id="collapse-8">
+                            <p>Most of our merchandise is made to order. For the preordered purchases, expect to recieve your order within a day of the product release date. For regular purchases, you can expect to recieve the order in a week.</p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-9" role="button" aria-expanded="false" aria-controls="collapse-9">Where is my order now?</a>
+                        <div class="collapse" id="collapse-9">
+                            <p>Unfortunately, you can not track your oder as of now. But we will be implementing this functionality very soon.</p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-10" role="button" aria-expanded="false" aria-controls="collapse-10">Do you ship internationally?</a>
+                        <div class="collapse" id="collapse-10">
+                            <p>We ship to most countries internationally except where it is not feasible for us. However, we charge an extra fee on all international shipments.</p>
+                        </div>
+                        <a data-toggle="collapse" href="#collapse-11" role="button" aria-expanded="false" aria-controls="collapse-11">Can I pay extra for expedited shipping?</a>
+                        <div class="collapse" id="collapse-11">
+                            <p>We currently do not offer expedited shipping, but we will make sure you get your order as soon as possible!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h6 class="text-center pt-5 mt-2">Any more questions? Feel free to <a href="{% url 'footer:contact' %}" class="a-contact">contact us.</a></h6>
+        </div>
+    </div>
+
+    <style>
+        .faq a {
+            display: block;
+            padding-top: 5px;
+            color: #354e5d;
+            text-decoration: none;
+        }
+
+        .faq a:hover, .faq a:focus, .faq a:active {
+            color: #18252d;
+            text-decoration: none;
+        }
+
+        .faq .collapse p {
+            color: #666666;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .a-contact, .outside-link {
+            display: inline !important;
+            color: #354e5d;
+            text-decoration: none;
+        }
+        .a-contact:hover, .outside-link:hover {
+            color: #18252d;
+            text-decoration: none;
+        }
+
+    </style>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

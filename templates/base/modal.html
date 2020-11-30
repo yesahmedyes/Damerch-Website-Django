@@ -1,0 +1,32 @@
+<div class="col-12 modal-{{ item.product.slug }}-{{ item.variation.tag }}">
+    <div class="row">
+        <div class="col-11">
+            <div class="row">
+                <div class="col-12 col-md-4 d-flex align-self-center">
+                    {% for img in item.product.productimage_set.all %}
+                        {% if img.featured %}
+                            <img class="img-thumbnail align-self-center mx-auto mt-2 mt-md-0" style="width: 120px;" src="{{ img.image.url }}" alt="{{ item.product.title }}">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-12 col-md-8 d-flex align-items-center pl-auto pl-md-0">
+                    <div class="col-12 text-center text-md-left pt-3 pt-md-0">
+                        <h4>{{ item.product.title }}</h4>
+                        <h6 class="modal-{{ item.product.slug }}-{{ item.variation.tag }}-description">PKR {{ item.product.price }}{% if item.variation %}, {{ item.variation.title | title }}{% endif %}, Qty: {{ item.quantity }}</h6>
+                        <h6 class="mb-1 modal-{{ item.product.slug }}-{{ item.variation.tag }}-total">Sub total: PKR {{ item.line_total }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 d-flex align-items-center justify-content-center pl-0">
+            <form method="POST" action="{% url 'carts:cart_delete' %}" class="modal-item-delete form d-flex align-items-center modal-delete-product">
+                {% csrf_token %}
+                <input type="hidden" name="size" value="{{ item.variation.tag }}">
+                <input type="hidden" name="product" value="{{ item.product.slug }}">
+                <button class="btn btn-default py-0" type="submit"><span class="fa fa-trash" style="font-size: 20px;"></span></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr class="col-11 modal-{{ item.product.slug }}-{{ item.variation.tag }}">

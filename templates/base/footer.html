@@ -1,0 +1,49 @@
+{% load staticfiles %}
+{% url 'home:home' as home_url %}
+
+<div class="section footer pb-3 pb-md-4">
+        <div class="container pt-5">
+            <div class="mx-auto">
+                <div class="row">
+                    <div class="logo col-12 pb-2 pt-2 d-flex justify-content-center">
+                        {% if request.path == home_url %}
+                            <img src="{% static 'img/logo.png' %}">
+                        {% else%}
+                            <img src="{% static 'img/logo-light.png' %}">
+                        {% endif %}
+                    </div>
+                    <hr class="col-10">
+                </div>
+            </div>
+        </div>
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col-12 col-md-4 offset-md-2 pt-2 pt-md-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-flex justify-content-right justify-content-lg-center">
+                            <ul class="px-md-0">
+                                <li><a href="{% url 'footer:about' %}">About Us</a></li>
+                                <li><a href="{% url 'footer:contact' %}">Contact</a></li>
+                                <li><a href="{% url 'footer:career' %}">Careers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex justify-content-right justify-content-lg-center">
+                            <ul class="pt-2 pt-lg-0 px-md-0">
+                                <li><a href="{% url 'footer:faq' %}">FAQs</a></li>
+                                <li><a href="{% url 'footer:refund' %}">Refund Policy</a></li>
+                                <li><a href="{% url 'footer:tos' %}">Terms of Services</a></li>
+                                <li><a href="{% url 'footer:ps' %}">Privacy Statement</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 offset-md-1 d-flex justify-content-center">
+                    <ul class="social-icons pt-3 px-0">
+                        <li><a href="https://www.facebook.com/damerch/" target="_blank"><span class="fa fa-facebook-square"></span></a></li>
+                        <li><a href="https://www.instagram.com/damerch.co/" target="_blank"><span class="fa fa-instagram"></span></a></li>
+                        <li><a href="https://twitter.com/damerch1" target="_blank"><span class="fa fa-twitter-square"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

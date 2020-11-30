@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Contact{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% if message %}
+    <div class="col-12 d-flex justify-content-center">
+        <div class="alert-message alert alert-info alert-dismissible fade show" role="alert" onload="alertOut()">
+            <strong>Alert!</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {% endif %}
+
+    <style>
+        .alert-message {
+            z-index: 99999999999;
+            position: fixed;
+            top: 50px;
+        }
+        @media only screen and (max-width: 390px) {
+        .alert-message {
+                left: 0;
+            }
+        }
+    </style>
+
+    <div class="container my-5 pt-5 pb-4 contact">
+            <h3 class="text-center pt-4 mt-0 mt-md-3">Contact Us</h3>
+            <h6 class="text-center pb-3">Enter your concern below</h6>
+            <div class="row d-flex justify-content-center mb-4 pt-1">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <form method="POST" action="#">
+                    {% csrf_token %}
+                    <input class="form-control mb-2" autocomplete="off" type="text" placeholder="Name" name="name" required autofocus>
+                    <input class="form-control mb-2" autocomplete="off" type="text" data-ok="email" placeholder="Email" name="email" required>
+                    <input class="form-control mb-2" autocomplete="off" type="text" placeholder="Query" name="query" required>
+                    <textarea class="form-control mb-2" placeholder="Details" autocomplete="off" name="details"></textarea>
+                    <button type="submit" class="btn btn-submit btn-dark col-12 mb-2">Submit</button>
+                </form>
+                <div class="mb-1"></div>
+                </div>
+            </div>
+            <h6 class="text-center">or email us directly at our email</h6>
+            <h6 class="text-center pb-1">damerch.o@gmail.com</h6>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        function alertOut() {
+            setTimeout(function() {
+                $(".alert").removeClass("show");
+            }, 3000);
+        }
+    </script>
+    <script>
+        $( document ).ready(function() {
+            alertOut();
+        });
+    </script>
+    <script src="{% static 'js/ok.js' %}"></script>
+    <script>
+        const ok = new Ok({
+            email: {
+                msg: "Please enter a valid email",
+                fn: val => /\S+@\S+\.\S+/.test(val)
+            },
+        });
+
+        Array.from(document.querySelectorAll("[data-ok]")).forEach(inputElement => {
+            ok.bind(inputElement);
+        });
+    </script>
+{% endblock %}

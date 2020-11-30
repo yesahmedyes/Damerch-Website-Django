@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Log In{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-12 d-flex justify-content-center">
+        <div class="alert-insta alert alert-info alert-dismissible fade" role="alert">
+            <strong>Sorry!</strong> Social logins are not available yet.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% if message %}
+        <div class="alert-message alert alert-info alert-dismissible fade show" role="alert" onload="alertOut()">
+            <strong>Alert!</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+
+    <style>
+        .alert-insta, .alert-message {
+            z-index: 99999999999;
+            position: fixed;
+            top: 50px;
+        }
+        @media only screen and (max-width: 390px) {
+            .alert-insta, .alert-message {
+                left: 0;
+            }
+        }
+    </style>
+
+    <div class="container mt-5 pt-5 login pb-0 pb-md-4">
+        <h3 class="text-center pt-4 mt-0 mt-md-3">Login to your account</h3>
+        <h6 class="text-center pb-4">Enter your credentials below</h6>
+        <div class="row d-flex justify-content-center mb-4">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <form method="POST" action="{% url 'myauth:login' %}">
+                    {% csrf_token %}
+                    <input class="form-control mb-2" autocomplete="off" type="text" placeholder="Username" name="username" required autofocus>
+                    <input class="form-control mb-2" autocomplete="off" type="password" placeholder="Password" name="password" required>
+                    <button type="submit" class="btn btn-default btn-dark col-12 mb-2">Log In</button>
+                </form>
+                <div class="mb-1"></div>
+                <a href="{% url 'myauth:reset' %}" class="d-block ml-1">Forgot your password? Reset</a>
+                <a href="{% url 'myauth:register' %}" class="d-block ml-1">New to damerch? Sign up</a>
+            </div>
+        </div>
+        <h6 class="text-center pb-1">or login using</h6>
+        <div class="d-flex justify-content-center mb-5">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="row text-center social-login">
+                    <div class="col-4"><a onclick="alertLoad()"><span class="fa fa-facebook-square"></span></a></div>
+                    <div class="col-4"><a onclick="alertLoad()"><span class="fa fa-instagram"></span></a></div>
+                    <div class="col-4"><a onclick="alertLoad()"><span class="fa fa-google-plus-square"></span></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        function alertOut() {
+            setTimeout(function() {
+                $(".alert").removeClass("show");
+            }, 3000);
+        }
+
+        function alertLoad() {
+            $(".alert-insta").addClass("show");
+            alertOut();
+        }
+    </script>
+    <script>
+        $( document ).ready(function() {
+            alertOut();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if message %}
+        <div class="col-12 d-flex justify-content-center">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              <strong>Alert!</strong> {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        </div>
+    {% endif %}
+
+    <style>
+        .alert {
+            z-index: 99999999999;
+            position: absolute;
+            top: 50px;
+        }
+        @media only screen and (max-width: 457px) {
+            .alert {
+                left: 0;
+            }
+        }
+    </style>
+
+    <div class="container mt-5 pt-5 register pb-2 pb-md-4">
+        <h3 class="text-center pt-4 mt-0 mt-md-3">Sign Up for damerch</h3>
+        <h6 class="text-center pb-4">Enter your information below</h6>
+        <div class="row d-flex justify-content-center mb-4">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <form method="POST" action="{% url 'myauth:register' %}">
+                    {% csrf_token %}
+                    <input class="form-control mb-2" autocomplete="off" type="text" placeholder="Username" name="username" required autofocus>
+                    <input class="form-control mb-2" autocomplete="off" type="text" placeholder="Email" name="email" required data-ok="email">
+                    <input class="form-control mb-2" autocomplete="off" type="password" placeholder="Password" name="password" id="password" required>
+                    <input class="form-control mb-2" oninput="check(this)" autocomplete="off" type="password" placeholder="Confirm Password" name="repassword" id="repassword" required>
+
+                    <button type="submit" class="btn btn-default btn-dark col-12 mb-2">Create Account</button>
+                </form>
+                <div class="mb-1"></div>
+            </div>
+        </div>
+        <h6 class="text-center pb-1">or signup using</h6>
+        <div class="d-flex justify-content-center mb-5">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="row text-center social-login">
+                    <div class="col-4"><a href="#"><span class="fa fa-facebook-square"></span></a></div>
+                    <div class="col-4"><a href="#"><span class="fa fa-instagram"></span></a></div>
+                    <div class="col-4"><a href="#"><span class="fa fa-google-plus-square"></span></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        function check(input) {
+            let value1 = String(input.value);
+            let value2 = String(document.getElementById("password").value);
+            if (value1 != value2) {
+                input.setCustomValidity("Passwords must match.");
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+    </script>
+    <script>
+        $( document ).ready(function() {
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+    </script>
+    <script src="{% static 'js/ok.js' %}"></script>
+    <script>
+        const ok = new Ok({
+            email: {
+                msg: "Please enter a valid email",
+                fn: val => /\S+@\S+\.\S+/.test(val)
+            },
+        });
+
+        Array.from(document.querySelectorAll("[data-ok]")).forEach(inputElement => {
+            ok.bind(inputElement);
+        });
+    </script>
+{% endblock %}

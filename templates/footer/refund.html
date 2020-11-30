@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Refund Policy{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/subscribe.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5 pt-5 pb-4">
+        <div class="col-12 pt-4">
+            <h4 class="pl-3 pt-2">Return policy</h4>
+            <hr class="col-12">
+            <div class="col-12 pl-3 pt-2">
+                <p>You have 2 weeks to return the product and claim for a <b>partial refund</b> or <b>exchange.</b></p>
+                <p>It is immensely important that the product is in a perfect condition - the same as when you recieved the order.</p>
+                <p>To return your order, email us at: <b>damerch.o@gmail.com,</b> with a <b>proof of payment</b>.</p>
+                <br>
+            </div>
+            <h4 class="pl-3">Change of order</h4>
+            <hr class="col-12">
+            <div class="col-12 pl-3 pt-2">
+                <p>In case you place an order and later realize that you've placed the wrong order, we allow for a change in order <b>before the product is shipped.</b></p>
+                <p>To change your order, email us at: <b>damerch.o@gmail.com</b>, with your <b>order number</b> and change details.</p>
+                <br><br>
+            </div>
+            <h6 class="text-center">For further information, feel free to <a href="{% url 'footer:contact' %}" class="a-contact">contact us.</a></h6>
+        </div>
+    </div>
+
+    <style>
+    .a-contact {
+        color: #354e5d;
+        text-decoration: none;
+    }
+    .a-contact:hover {
+        color: #18252d;
+        text-decoration: none;
+    }
+    </style>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

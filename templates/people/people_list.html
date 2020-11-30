@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}People list{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/people_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="section people mt-5 pt-5">
+        <div class="container py-4">
+            {% for object in object_list %}
+                {% cycle '<div class="row">' '' '' %}
+                    <div class="col-lg-4 col-md-12 d-flex justify-content-center align-self-start mb-5">
+                        <div class="card" style="width: 20rem;">
+                            {% if object.image %}
+                                <a href="{{ object.get_url }}"><img class="card-img-top" src="{{ object.image.url }}" alt="{{ object.name }} logo"></a>
+                             {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ object.name }}</h5>
+                                <a href="{{ object.get_url }}" class="btn btn-dark">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                {% cycle '' '' '</div>' %}
+            {% endfor %}
+            {% if not products.count|divisibleby:3 %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

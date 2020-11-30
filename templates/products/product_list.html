@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Product List{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="section search mt-5 pt-4">
+        <div class="container pt-5">
+            {% include 'base/search.html' %}
+        </div>
+    </div>
+    <div class="section products mt-3">
+        <div class="container pt-4 pb-4 pb-md-5">
+            {% for object in object_list %}
+                {% cycle '<div class="row">' '' '' %}
+                    <div class="col-lg-4 col-md-12 d-flex justify-content-center align-self-start mb-5">
+                        <div class="card" style="width: 20rem;">
+                            {% for item in object.productimage_set.all %}
+                                {% if item.featured %}
+                                    <a href="{{ object.get_url }}"><img class="card-img-top p-3 " src="{{ item.image.url }}" alt="{{ object.title }} logo"></a>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="card-body pt-0 pt-md-1 pb-4">
+                                <h5 class="card-title text-center mb-1">{{ object.title }}</h5>
+                                <p class="card-text text-center mb-3">by {{ object.owner.name }}</p>
+                                        {% if object.discount %}
+                                            <div class="row price d-flex justify-content-center">
+                                                <h5 class="card-text">PKR {{ object.price }}</h5>
+                                                <p class="card-text pl-1" >{{ object.discount }}</p>
+                                            </div>
+                                        {% else %}
+                                            <h5 class="card-text col text-center">PKR {{ object.price }}</h5>
+                                        {% endif %}
+                                        <div class="col d-flex justify-content-center">
+                                            <a href="{{ object.get_url }}" class="col-9 btn btn-dark mt-2 mb-2" >View Product</a>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                {% cycle '' '' '</div>' %}
+            {% endfor %}
+            {% if not products.count|divisibleby:3 %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

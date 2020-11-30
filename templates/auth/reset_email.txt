@@ -1,0 +1,10 @@
+Dear, {{ name }}
+
+Sorry to hear that you were locked out of your account.
+
+Reset your password now by clicking on the link: {{ link }}
+
+If you did not request for a password reset, let us know via email at damerch.o@gmail.com as soon as possible.
+
+Regards,
+Team Damerch

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Log In{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer-dark.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-12 d-flex justify-content-center">
+        {% if message %}
+        <div class="alert-message alert alert-info alert-dismissible fade show" role="alert" onload="alertOut()">
+            <strong>Alert!</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+
+    <style>
+        .alert-message {
+            z-index: 99999999999;
+            position: fixed;
+            top: 50px;
+        }
+        @media only screen and (max-width: 390px) {
+            .alert-message {
+                left: 0;
+            }
+        }
+    </style>
+
+    <div class="container mt-5 pt-5 login pb-5">
+        <h3 class="text-center pt-4 mt-0 mt-md-3">Login to the artist account</h3>
+        <h6 class="text-center pb-4">Enter the credentials below</h6>
+        <div class="row d-flex justify-content-center mb-4">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <form method="POST" action="{% url 'myauth:artist' %}">
+                    {% csrf_token %}
+                    <input class="form-control mb-2" autocomplete="off" type="text" placeholder="Username" name="username" required autofocus>
+                    <input class="form-control mb-2" autocomplete="off" type="password" placeholder="Password" name="password" required>
+                    <button type="submit" class="btn btn-default btn-dark col-12 mb-2">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        function alertOut() {
+            setTimeout(function() {
+                $(".alert").removeClass("show");
+            }, 3000);
+        }
+    </script>
+    <script>
+        $( document ).ready(function() {
+            alertOut();
+        });
+    </script>
+{% endblock %}

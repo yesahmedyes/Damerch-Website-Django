@@ -1,0 +1,44 @@
+{% url 'home:home' as home_url %}
+{% url 'footer:contact' as contact_url %}
+{% url 'products:list' as products_url %}
+{% url 'myauth:login' as login_url %}
+{% url 'myauth:register' as register_url %}
+{% url 'carts:cart' as cart_url %}
+{% url 'people:list' as people_url %}
+{% url 'myauth:logout' as logout_url %}
+
+<button class="navbar-toggler navbar-toggler-list" type="button" data-toggle="collapse" data-target="#navbarList" aria-controls="navbarList" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<a class="navbar-brand text-center mx-auto" href="{{ home_url }}">damerch</a>
+
+<button type="button" class="btn custom-button nav-cart {% if request_path == cart_url %}active{% endif %}" data-toggle="modal" data-target="#modalCart">
+    <i class="material-icons">shopping_cart</i>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarList">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item {% if request_path == home_url %}active{% endif %}">
+            <a class="nav-link" href="{{ home_url }}">Home</a>
+        </li>
+
+        <li class="nav-item {% if request_path == products_url %}active{% endif %}">
+            <a class="nav-link" href="{{ products_url }}">Products</a>
+        </li>
+
+        <li class="nav-item {% if request_path == people_url %}active{% endif %}">
+            <a class="nav-link" href="{{ people_url }}">People</a>
+        </li>
+
+        {% if user_auth == True %}
+            <li class="nav-item {% if request_path == logout_url %}active{% endif %}">
+                <a class="nav-link" href="{{ logout_url }}">LogOut</a>
+            </li>
+        {% else %}
+            <li class="nav-item nav-item {% if request_path == login_url %}active{% endif %}">
+                <a class="nav-link" href="{{ login_url }}">LogIn</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

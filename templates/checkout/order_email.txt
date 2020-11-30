@@ -1,0 +1,16 @@
+Dear, {{ name | title }}
+Your order was placed successfully.
+
+Order ID: #{{ order_number }}
+
+Check your order status: {{ link }}
+
+Product          Quantity          Totral
+{% for item in cart.cartitem_set.all %}
+{{ item.product | title }}, {{ item.variation.tag }}          {{ item.quantity }}          PKR {{ item.line_total }}
+{% endfor %}
+
+Cart total: PKR {{ cart.total }}
+
+Regards,
+Team Damerch

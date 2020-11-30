@@ -1,0 +1,104 @@
+{% load staticfiles %}
+
+<!Doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-site-verification" content="xmfj7JDtm48wfS8AC2uD3mOi7QxxCkRLBDPKbPeI1nI" />
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    {% include 'base/fonts.html' %}
+    {% block stylesheet %}{% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png" sizes="16x16">
+
+</head>
+
+<body>
+
+    {% include 'base/navbar.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            console.log();
+            if ($(window).width() > 992) {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'nav' %}",
+                    data: {
+                        "href": "base/nav-web.html",
+                        "path": "{{ request.path }}",
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    success: function (data) {
+                        $('.navbar').html(data);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'nav' %}",
+                    data: {
+                        "href": "base/nav-mob.html",
+                        "path": "{{ request.path }}",
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    success: function (data) {
+                        $('.navbar').html(data);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+           $(".modal-delete-product").submit(function(event){
+               event.preventDefault();
+               let $submittedform = $(this);
+
+               let $product = $submittedform.find("input[name='product']").val();
+               let $size = $submittedform.find("input[name='size']").val();
+
+               $.ajax({
+                    type: "POST",
+                    url: "{% url 'carts:cart_delete' %}",
+                    data: {
+                        "product": $product,
+                        "size": $size,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    success: function(data) {
+                        modal_update($product, $size, data.cart_total);
+                    }
+                });
+           });
+        });
+
+        function modal_update($product, $size, $cart_total) {
+            $(".modal-" + $product + "-" + $size).remove();
+            $(".modal-total").text("Total: PKR " + $cart_total);
+            $('.modal-checkout-url').attr("href", "{% url 'carts:cart' %}");
+        }
+    </script>
+
+    {% block script %}{% endblock %}
+</body>
+
+</html>

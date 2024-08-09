@@ -1,4 +1,4 @@
-# damerch-website
+# Damerch - Ecommerce Store
 
 I created this full fledged ecommerce platform with authentication, social logins, user alerts, cart, checkout, automatic email sending and payment method e.t.c.
 

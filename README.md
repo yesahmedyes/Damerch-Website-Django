@@ -1,25 +1,86 @@
-# Damerch - Ecommerce Store
+# Damerch - Ecommerce Platform
 
-I created this full fledged ecommerce platform with authentication, social logins, user alerts, cart, checkout, automatic email sending and payment method e.t.c.
+A full-fledged ecommerce platform built with Django, offering comprehensive features including authentication, shopping cart, checkout, and payment processing.
 
-The technologies that were used in this project are mainly Django for the backend, Sqlite3 for database and JQuery, Ajax and Bootstrap for the frontend
+## Features
 
-<br>
+### User Experience
 
-### Home
-<p><img src="https://github.com/ahmed-dys99/damerch-website/blob/main/demo/demo-home.gif" width="600"></p>
+- User authentication with social logins
+- Product catalog with detailed views
+- People/Artist profiles
+- Advanced product search
+- User alerts and notifications
+- Responsive design for all devices
 
-### Auth
-<p><img src="https://github.com/ahmed-dys99/damerch-website/blob/main/demo/demo-auth.gif" width="600"></p>
+### Shopping Features
 
-### Products
-<p><img src="https://github.com/ahmed-dys99/damerch-website/blob/main/demo/demo-products.gif" width="600"></p>
+- Shopping cart with real-time updates
+- Secure checkout process
+- Multiple payment methods including Cash on Delivery
+- Order tracking and management
+- Automatic email notifications
 
-### People
-<p><img src="https://github.com/ahmed-dys99/damerch-website/blob/main/demo/demo-people.gif" width="600"></p>
+## Product Images
 
-### Cart
-<p><img src="https://github.com/ahmed-dys99/damerch-website/blob/main/demo/demo-cart.gif" width="600"></p>
+### Home Page
 
-### Checkout
-<p><img src="https://github.com/ahmed-dys99/damerch-website/blob/main/demo/demo-checkout.gif" width="600"></p>
+<div align="center">
+<img src="./demo/demo-home.gif" width="600">
+</div>
+
+### Authentication
+
+<div align="center">
+<img src="./demo/demo-auth.gif" width="600">
+</div>
+
+### Product Catalog
+
+<div align="center">
+<img src="./demo/demo-products.gif" width="600">
+</div>
+
+### People/Artists
+
+<div align="center">
+<img src="./demo/demo-people.gif" width="600">
+</div>
+
+### Shopping Cart
+
+<div align="center">
+<img src="./demo/demo-cart.gif" width="600">
+</div>
+
+### Checkout Process
+
+<div align="center">
+<img src="./demo/demo-checkout.gif" width="600">
+</div>
+
+## Technical Stack
+
+### Backend
+
+- Django framework
+- SQLite3 database
+- Python-based templating
+- Email integration with SendGrid
+
+### Frontend
+
+- Bootstrap for responsive design
+- jQuery for interactive elements
+- AJAX for asynchronous requests
+- HTML5/CSS3
+
+### Authentication
+
+- Django authentication system
+- Social auth integration using django-allauth
+
+### Payment Processing
+
+- Integrated payment gateway using Stripe
+- Secure transaction handling
